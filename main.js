@@ -112,37 +112,57 @@ const businesses = [
   ];
 
   const outEl = document.querySelector("#output")
-outEl.innerHTML = "<h1>Active Businesses</h1>"
+// outEl.innerHTML = "<h1>Active Businesses</h1>"
 
-const manufacturingBusinesses = businesses.filter(business => {
-  let isManu = false;
+// const manufacturingBusinesses = businesses.filter(business => {
+//   let isManu = false;
 
-  if (business.companyIndustry === "Manufacturing") {
-    isManu = true;
-  }
+//   if (business.companyIndustry === "Manufacturing") {
+//     isManu = true;
+//   }
 
-  return isManu;
+//   return isManu;
+// })
+
+// const newYorkBusinesses = businesses.filter(business => {
+//   let inNewYork = false
+
+//   if (business.addressStateCode === "NY") {
+//       inNewYork = true
+//   }
+
+//   return inNewYork
+// })
+
+// manufacturingBusinesses.forEach(business => {
+//   outEl.innerHTML += `
+//     <h2>${business.companyName}</h2>
+//     <section>
+//       ${business.addressFullStreet}
+//     </section>
+//     <section>
+//     ${business.addressCity}, ${business['addressStateCode']} ${business['addressZipCode']}
+//     </section>
+//   `
+//   outEl.innerHTML += "<hr/>"
+// });
+
+outEl.innerHTML += "<h1>Purchasing Agents</h1>";
+
+const agents = businesses.map(business => {
+    return {name: business.purchasingAgent['nameFirst'] + ' ' + business.purchasingAgent['nameLast'], company: business.companyName, phoneNumber: business.phoneWork}
 })
 
-const newYorkBusinesses = businesses.filter(business => {
-  let inNewYork = false
+console.table(agents)
 
-  if (business.addressStateCode === "NY") {
-      inNewYork = true
-  }
-
-  return inNewYork
-})
-
-manufacturingBusinesses.forEach(business => {
+agents.forEach(agent => {
   outEl.innerHTML += `
-    <h2>${business.companyName}</h2>
-    <section>
-      ${business.addressFullStreet}
-    </section>
-    <section>
-    ${business.addressCity}, ${business['addressStateCode']} ${business['addressZipCode']}
-    </section>
-  `
-  outEl.innerHTML += "<hr/>"
+  <h2>${agent.name}</h2>
+  <h3>
+    ${agent.company}
+  </h3>
+  <h3>
+    ${agent.phoneNumber}
+  </h3>`
+  outEl.innerHTML += "<hr/>";
 });
