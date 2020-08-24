@@ -134,7 +134,18 @@ const newYorkBusinesses = businesses.filter(business => {
   return inNewYork
 })
 
-businesses.forEach(business => {
+const bigSpenders = businesses.filter(business => {
+ let isBigSpender = false
+
+ const powerLevel = (over9000) => over9000 > 9000;
+ if (business.orders.some(powerLevel)) {
+   isBigSpender = true
+ }
+
+ return isBigSpender
+})
+
+bigSpenders.forEach(business => {
   outEl.innerHTML += `
     <h2>${business.companyName}</h2>
     <section>
@@ -188,20 +199,22 @@ document
       }
   });
 
-const monthlyRainfall = [23, 13, 27, 20, 20, 31, 33, 26, 19, 12, 14, 12, 10]
 
-const totalRainfall = monthlyRainfall.reduce(
-  (currentTotal, newValue) => currentTotal += newValue,
-  0
-)
 
-console.log(totalRainfall)
+// const monthlyRainfall = [23, 13, 27, 20, 20, 31, 33, 26, 19, 12, 14, 12, 10]
 
-const words = ["The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog"]
+// const totalRainfall = monthlyRainfall.reduce(
+//   (currentTotal, newValue) => currentTotal += newValue,
+//   0
+// )
 
-const sentence = words.reduce(
-  (currentSentence, newWord) => currentSentence + newWord + ' ',
-  ''
-)
+// console.log(totalRainfall)
 
-console.log(sentence)
+// const words = ["The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog"]
+
+// const sentence = words.reduce(
+//   (currentSentence, newWord) => currentSentence + newWord + ' ',
+//   ''
+// )
+
+// console.log(sentence)
